@@ -216,6 +216,21 @@ abstract class FirebaseUILocalizationLabels {
   /// Used as a hint on a `ForgotPasswordView`.
   String get forgotPasswordHintText;
 
+  /// Used as email is not verified error text.
+  String get emailNotVerifiedErrorText => '';
+
+  /// Used as email is not verified error text.
+  String get emailVerificationPendingText => '';
+
+  /// Used as send verification email button label.
+  String get sendVerificationEmailButtonText => '';
+
+  /// Used as send verification email button label.
+  String get verificationEmailSentText => '';
+
+  /// Used as dismiss button label.
+  String get dismissButtonText => '';
+
   /// Used as a label of the `EmailLinkSignInButton`.
   String get emailLinkSignInButtonLabel;
 

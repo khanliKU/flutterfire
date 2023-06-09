@@ -92,6 +92,21 @@ class TrLocalizations extends FirebaseUILocalizationLabels {
   String get forgotPasswordViewTitle => "Şifremi unuttum";
 
   @override
+  String get emailNotVerifiedErrorText => 'E-posta adresi doğrulanmadı';
+
+  @override
+  String get emailVerificationPendingText => 'E-posta doğrulama bekliyor';
+
+  @override
+  String get sendVerificationEmailButtonText => 'Doğrulama e-postası gönder';
+
+  @override
+  String get verificationEmailSentText => 'Doğrulama e-postası gönderildi';
+
+  @override
+  String get dismissButtonText => 'Kapat';
+
+  @override
   String get geopointLabel => "coğrafi nokta";
 
   @override
@@ -174,7 +189,7 @@ class TrLocalizations extends FirebaseUILocalizationLabels {
   String get registerHintText => "Hesabınız yok mu?";
 
   @override
-  String get registerText => "Kaydedin";
+  String get registerText => "Kayıt olun";
 
   @override
   String get resetPasswordButtonLabel => "Şifreyi sıfırla";

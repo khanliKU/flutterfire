@@ -89,6 +89,21 @@ class EnLocalizations extends FirebaseUILocalizationLabels {
   String get forgotPasswordViewTitle => "Forgotten password";
 
   @override
+  String get emailNotVerifiedErrorText => 'Email is not verified';
+
+  @override
+  String get emailVerificationPendingText => 'Email verification pending';
+
+  @override
+  String get sendVerificationEmailButtonText => 'Send verification email';
+
+  @override
+  String get verificationEmailSentText => 'Verification email sent';
+
+  @override
+  String get dismissButtonText => 'Dismiss';
+
+  @override
   String get geopointLabel => "geopoint";
 
   @override

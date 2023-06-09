@@ -350,6 +350,7 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
 
   @override
   Widget build(BuildContext context) {
+    final l = FirebaseUILocalizations.labelsOf(context);
     if (state == EmailVerificationState.dismissed ||
         state == EmailVerificationState.unresolved ||
         state == EmailVerificationState.verified) {
@@ -363,7 +364,7 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.yellow,
+              color: Theme.of(context).colorScheme.errorContainer,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
@@ -374,8 +375,8 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
                   Subtitle(
                     text: state == EmailVerificationState.sent ||
                             state == EmailVerificationState.pending
-                        ? 'Verification email sent'
-                        : 'Email is not verified',
+                        ? l.emailVerificationPendingText
+                        : l.emailNotVerifiedErrorText,
                     fontWeight: FontWeight.bold,
                   ),
                   if (state == EmailVerificationState.pending) ...[
@@ -393,10 +394,10 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
             // ignore: prefer_const_constructors
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                LoadingIndicator(size: 16, borderWidth: 0.5),
-                SizedBox(width: 16),
-                Text('Waiting for email verification'),
+              children: [
+                const LoadingIndicator(size: 16, borderWidth: 0.5),
+                const SizedBox(width: 16),
+                Text(l.emailVerificationPendingText),
               ],
             )
           else
@@ -408,8 +409,9 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
                   UniversalButton(
                     variant: ButtonVariant.text,
                     materialColor: Theme.of(context).colorScheme.error,
-                    cupertinoColor: CupertinoColors.destructiveRed,
-                    text: 'Dismiss',
+                    cupertinoColor:
+                        Theme.of(context).colorScheme.errorContainer,
+                    text: l.dismissButtonText,
                     onPressed: () {
                       setState(service.dismiss);
                     },
@@ -417,7 +419,7 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
                 if (state != EmailVerificationState.sent)
                   LoadingButton(
                     isLoading: state == EmailVerificationState.sending,
-                    label: 'Send verification email',
+                    label: l.sendVerificationEmailButtonText,
                     onTap: () {
                       service.sendVerificationEmail(
                         platform,
@@ -428,7 +430,7 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
                 else
                   UniversalButton(
                     variant: ButtonVariant.text,
-                    text: 'Ok',
+                    text: l.verificationEmailSentText,
                     onPressed: () {
                       setState(service.dismiss);
                     },
