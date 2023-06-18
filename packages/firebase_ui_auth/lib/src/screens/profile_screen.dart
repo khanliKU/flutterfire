@@ -381,8 +381,8 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
                   ),
                   if (state == EmailVerificationState.pending) ...[
                     const SizedBox(height: 8),
-                    const Text(
-                      'Please check your email and click the link to verify your email address.',
+                    Text(
+                      l.passwordResetEmailSentText,
                     ),
                   ]
                 ],

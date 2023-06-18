@@ -171,10 +171,8 @@ class __EmailVerificationScreenContentState
           child: Title(text: 'Verify your email'),
         ),
         const SizedBox(height: 32),
-        const Text(
-          'A verification email has been sent to your email address. '
-          'Please check your email and click on the link to verify '
-          'your email address.',
+        Text(
+          l.passwordResetEmailSentText,
         ),
         const SizedBox(height: 32),
         if (state == EmailVerificationState.pending)
