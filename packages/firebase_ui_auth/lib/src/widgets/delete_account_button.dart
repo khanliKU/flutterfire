@@ -10,6 +10,7 @@ import 'package:firebase_ui_shared/firebase_ui_shared.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+typedef ActionsBeforeDeleteCallback = Future<bool> Function();
 typedef DeleteFailedCallback = void Function(Exception exception);
 typedef SignInRequiredCallback = Future<bool> Function();
 
@@ -19,6 +20,8 @@ typedef SignInRequiredCallback = Future<bool> Function();
 class DeleteAccountButton extends StatefulWidget {
   /// {@macro ui.auth.auth_controller.auth}
   final FirebaseAuth? auth;
+
+  final ActionsBeforeDeleteCallback? actionsBeforeDelete;
 
   /// A callback tha is called if the [FirebaseAuth] requires the user to
   /// re-authenticate and approve the account deletion. By default,
@@ -37,6 +40,7 @@ class DeleteAccountButton extends StatefulWidget {
     this.auth,
     this.onSignInRequired,
     this.onDeleteFailed,
+    this.actionsBeforeDelete,
     this.variant = ButtonVariant.filled,
   });
 
@@ -55,6 +59,12 @@ class _DeleteAccountButtonState extends State<DeleteAccountButton> {
     });
 
     try {
+      if (widget.actionsBeforeDelete != null) {
+        final proceed = await widget.actionsBeforeDelete!();
+        if (!proceed) {
+          throw Exception('Can not complete actions before delete.');
+        }
+      }
       await auth.currentUser?.delete();
       await FirebaseUIAuth.signOut(context: context, auth: auth);
     } on FirebaseAuthException catch (err) {
