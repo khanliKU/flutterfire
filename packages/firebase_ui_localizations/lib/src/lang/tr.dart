@@ -183,7 +183,7 @@ class TrLocalizations extends FirebaseUILocalizationLabels {
   String get referenceLabel => "referans";
 
   @override
-  String get registerActionText => "Kaydet";
+  String get registerActionText => "Kaydol";
 
   @override
   String get registerHintText => "Hesabınız yok mu?";
